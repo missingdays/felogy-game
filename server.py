@@ -5,7 +5,7 @@ from flask import jsonify
 import numpy
 from word_loader import WordLoader
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 word_loader = WordLoader()
 
@@ -19,6 +19,10 @@ def hello():
         'realWords': [x.serialize() for x in get_real_words(language, real_words)],
         'fakeWords': [x.serialize() for x in get_fake_words(language, fake_words)]
     })
+
+@app.route('/')
+def root():
+    return app.send_static_file('index.html')
 
 def get_real_words(language, real_words):
     words = word_loader.get_real_words_for(language=language)

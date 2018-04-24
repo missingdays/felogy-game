@@ -1,0 +1,12 @@
+.definition {
+	white-space: pre
+}
+
+.btn-fake, .btn-real {
+	width: 45%;
+	height: 100px;
+}
+
+.btn-real{
+	float: right;
+}
