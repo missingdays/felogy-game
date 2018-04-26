@@ -24,6 +24,10 @@ def hello():
 def root():
     return app.send_static_file('index.html')
 
+@app.route('/game.html')
+def game():
+    return app.send_static_file('game.html')
+
 def get_real_words(language, real_words):
     words = word_loader.get_real_words_for(language=language)
 

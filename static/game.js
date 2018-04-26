@@ -11,7 +11,7 @@ class Game {
         this.start();
     }
 
-    loadWords(){
+    loadWords(callback){
         let totalWords = this.nWords * ADDITIONAL_WORDS_FACTOR;
 
         $.ajax({
@@ -42,6 +42,10 @@ class Game {
                 }
 
                 shuffle(this.words);
+
+                if(callback){
+                    callback();
+                }
             }
         });
     }
@@ -56,14 +60,24 @@ class Game {
     }
 
     makeMove(answer){
-        if(this.getCurrentWord().isFake == answer){
+        const word = this.getCurrentWord();
+        this.currentWord++;
+
+        if(word.isFake == answer){
             this.score++;
+
+            return true;
         }
 
-        this.currentWord++;
+        return false;
+
     }
 
     isOver(){
-        return this.currentWord == this.words.length;
+        return this.currentWord >= this.nWords;
+    }
+
+    getProgress(){
+        return this.currentWord / this.nWords;
     }
 }

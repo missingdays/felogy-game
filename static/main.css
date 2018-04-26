@@ -10,3 +10,14 @@
 .btn-real{
 	float: right;
 }
+
+.card-title h3 {
+	width: 40%;
+	margin-right: 0;
+	display: inline-block;
+}
+
+.card-title .result {
+	float: right;
+	text-align: right;
+}
