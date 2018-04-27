@@ -45,6 +45,11 @@ function updateViewAfterMove(answer){
 
 function makeMove(answer){
 	if(waitingForMove){
+
+		if(game.isOver()){
+			return;
+		}
+
 		updateViewAfterMove(answer);
 		waitingForMove = false;
 	} else {
@@ -70,5 +75,15 @@ function fakeClicked(){
 function realClicked(){
 	makeMove(false);
 }
+
+$(document).keypress(event => {
+	const char = String.fromCharCode(event.which);
+
+	if(char == 'f'){
+		fakeClicked();
+	} else if(char == 'j'){
+		realClicked();
+	}
+});
 
 startGame(getUrlParameter("language"));
