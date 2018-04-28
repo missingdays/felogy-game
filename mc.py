@@ -1,11 +1,15 @@
 import markovify
-from util import get_dictionary, save_words
+from word_loader import load_dictionary, save_words
+
+import sys
 
 dictionary_set = set()
-LANGUAGE = 'english'
+
+LANGUAGE = sys.argv[1]
+STATE_SIZE = int(sys.argv[2])
 
 def generate_text():
-	dictionary = get_dictionary(LANGUAGE)
+	dictionary = load_dictionary(LANGUAGE)
 
 	text = ''
 
@@ -43,7 +47,7 @@ def generate_words(model):
 		except KeyboardInterrupt:
 			break
 
-	save_words(words=words, lang=LANGUAGE, model='markov-chain-size-4')
+	save_words(words=words, lang=LANGUAGE, model='markov-chain-size-{}'.format(STATE_SIZE))
 
 if __name__ == "__main__":
 	print('Generating text')
@@ -51,7 +55,7 @@ if __name__ == "__main__":
 	text = generate_text()
 	
 	print('Fitting model')
-	model = markovify.Text(text, state_size=4)
+	model = markovify.Text(text, state_size=STATE_SIZE)
 
 	print('Generating words')
 

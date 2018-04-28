@@ -1,6 +1,8 @@
 let game;
 let waitingForMove = true;
 
+const language = getUrlParameter("language") || "english";
+
 function startGame(language){
 	game = new Game(10, language);
 
@@ -21,12 +23,12 @@ function updateViewBeforeMove(){
 	$(".word").html(word.word.word);
 	console.log(`${game.getProgress() * 100}%`);
 	$(".progress-bar").width(`${game.getProgress() * 100}%`);
-	$(".result").html("");
 
 	$(".btn-fake").show();
 	$(".btn-real").html("Real");
 
 	$(".definition").html("");
+	$(".result").css("visibility", "hidden");
 }
 
 function updateViewAfterMove(answer){
@@ -41,6 +43,8 @@ function updateViewAfterMove(answer){
 	} else {
 		$(".result").html("Wrong");
 	}
+
+	$(".result").css("visibility", "visible");
 }
 
 function makeMove(answer){
@@ -64,7 +68,7 @@ function renderGameOver(){
 		`<div class="jumbotron">
 			<h1 class="display-4"> Score: ${game.score} / ${game.nWords} </h1>
 			<a class="btn btn-primary btn-lg" href="/" role="button">To main menu</a>
-			<a class="btn btn-primary btn-lg" href="/game.html" role="button">New game</a>
+			<a class="btn btn-primary btn-lg" href="/game.html?language=${language}" role="button">New game</a>
 		</div>`)
 }
 
@@ -86,4 +90,4 @@ $(document).keypress(event => {
 	}
 });
 
-startGame(getUrlParameter("language"));
+startGame(language);
