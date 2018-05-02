@@ -62,12 +62,8 @@ def verify_password(username_or_token, password):
 
 @app.route('/api/users', methods=['POST'])
 def new_user():
-
-    print(request.form)
-
     username = request.form.get('username')
     password = request.form.get('password')
-
 
     if username is None or password is None:
         abort(400)    # missing arguments

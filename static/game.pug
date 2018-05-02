@@ -1,0 +1,30 @@
+doctype html
+html
+	include head.pug
+
+	body
+		include header.pug
+
+		.container.game
+			.card
+				.card-body
+					.card-title
+						h3.word
+						h3.result Correct
+
+					button(class="btn btn-outline-danger btn-fake" onclick="fakeClicked();") Fake
+					button(class="btn btn-outline-success btn-real" onclick="realClicked();") Real
+
+			.progress
+				.progress-bar(role="progressbar")
+
+			.card
+				.card-body
+					p.definition
+
+
+		include scripts.pug
+
+		script(src="static/util.js")
+		script(src="static/game.js")
+		script(src="static/game-manager.js")
