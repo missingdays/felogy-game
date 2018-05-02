@@ -109,6 +109,10 @@ def root():
 def game():
     return app.send_static_file('game.html')
 
+@app.route('/login.html')
+def login():
+    return app.send_static_file('login.html')
+
 def get_real_words(language, real_words):
     words = word_loader.get_real_words_for(language=language)
 

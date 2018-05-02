@@ -4,9 +4,23 @@ html(lang="en")
 
 	body
 		include header.pug
-
+		
 		.container
-			
+			.login-form(class="row")
+				div(class="col col-3")
+				div(class="col col-6")
+					div(class="input-group mb-3")
+						div(class="input-group-prepend")
+							span(class="input-group-text" id="username-addon") Username
+						input(type="text", class="form-control", aria-label="Username", aria-describedby="username-addon")
+
+					div(class="input-group mb-3")
+						div(class="input-group-prepend")
+							span(class="input-group-text" id="password-addon") Password
+						input(type="text", class="form-control", aria-label="Password", aria-describedby="password-addon")
+
+					button(class="btn btn-success login") Login
+					button(class="btn btn-primary register") Register
 
 		include scripts.pug
 		script(src="login.js")
