@@ -5,22 +5,22 @@ html(lang="en")
 	body
 		include header.pug
 		
-		.container
+		.container.main
 			.login-form(class="row")
 				div(class="col col-3")
 				div(class="col col-6")
 					div(class="input-group mb-3")
 						div(class="input-group-prepend")
 							span(class="input-group-text" id="username-addon") Username
-						input(type="text", class="form-control", aria-label="Username", aria-describedby="username-addon")
+						input(type="text", class="form-control", aria-label="Username", aria-describedby="username-addon", id="username")
 
 					div(class="input-group mb-3")
 						div(class="input-group-prepend")
 							span(class="input-group-text" id="password-addon") Password
-						input(type="text", class="form-control", aria-label="Password", aria-describedby="password-addon")
+						input(type="text", class="form-control", aria-label="Password", aria-describedby="password-addon", id="password")
 
-					button(class="btn btn-success login") Login
-					button(class="btn btn-primary register") Register
-
+					button(class="btn btn-success login" onclick="handleLoginUser();") Login
+					button(class="btn btn-primary register" onclick="handleRegisterUser();") Register
+		
 		include scripts.pug
-		script(src="login.js")
+		script(src="static/login.js")

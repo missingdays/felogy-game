@@ -60,7 +60,7 @@ def verify_password(username_or_token, password):
     g.user = user
     return True
 
-@app.route('/api/users', methods=['POST'])
+@app.route('/api/createUser', methods=['POST'])
 def new_user():
     username = request.form.get('username')
     password = request.form.get('password')
